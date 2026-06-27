@@ -1,0 +1,14 @@
+@model dynamic
+
+<div class="clock-widget">
+   <div class="widget-datetime-left-block">
+      <span class="calendar-day-number">@Model.DayNumber</span>
+   </div>
+
+   <div class="widget-datetime-right-block">
+      @* <span class="time-minutes">@Model.Minutes</span> *@
+      <span class="calendar-month-year">@Model.MonthName</span>
+      <span class="time-hours">@Model.HoursMinutes</span>
+      <span class="calendar-month-year">@Model.Year</span>
+   </div>
+</div>

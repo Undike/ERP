@@ -1,0 +1,39 @@
+﻿@page
+@model ERP.Pages.OrdersModel
+@{
+   ViewData["Title"] = "Orders";
+}
+
+<div class="orders-container">
+   <div class="orders-list">
+      <table class="orders-table">
+         <thead>
+            <tr>
+               <th>Nr zlecenia</th>
+               <th>Nazwa klienta</th>
+               <th>Data zam.</th>
+               <th>Druk</th>
+               <th>3D</th>
+               <th>Status</th>
+               <th>Data wysyłki</th>
+               <th>OH</th>
+            </tr>
+         </thead>
+         <tbody>
+            @foreach (var order in Model.Orders)
+            {
+               <tr>
+                  <td>@order.Id</td>
+                  <td>@order.ClientName</td>
+                  <td>@order.OrderDate.ToShortDateString()</td>
+                  <td>@order.PrintingMethod</td>
+                  <td>@(order.Is3D ? "Tak" : "Nie")</td>
+                  <td>@order.Status</td>
+                  <td>@order.DeliveryDate.ToShortDateString()</td>
+                  <td>@order.SalesManager.EmployeeInitials</td>
+               </tr>
+            }
+         </tbody>
+      </table>
+   </div>
+</div>

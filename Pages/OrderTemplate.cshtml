@@ -1,0 +1,199 @@
+﻿@page
+
+@model OrderTemplateModel
+@{
+   Layout = null;
+}
+<!DOCTYPE html>
+<html lang="pl">
+
+<head>
+   <meta charset="utf-8" />
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Order Template</title>
+   <style>
+         /* 1. Настройка самого листа А4 */
+         @@Page {
+            size: A4 portrait;
+            /* Уменьшаем отступы, чтобы влезло больше данных */
+            margin: 10mm;
+         }
+
+         body {
+            margin: 0;
+            padding: 0;
+            background-color: #b8b8b8;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            overflow: hidden;
+         }
+
+         .screen-wrapper {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            /* Высота экрана минус небольшие отступы для красоты */
+            height: 98vh;
+            width: 100vw;
+         }
+
+         .page-container {
+            /* Ширина листа А4 (~210мм)*/
+            width: 210mm;
+            max-width: 210mm;
+            /* Высота листа А4 (~297мм)*/
+            height: 297mm;
+            max-height: 297mm;
+
+            position: relative;
+            box-sizing: border-box;
+            overflow: hidden;
+
+            background-color: white;
+            color: black;
+
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+
+            margin: 0 auto;
+            padding: 3mm;
+
+            transform-origin: center center;
+
+            /* Автоматическое масштабирование под высоту экрана (.screen-wrapper) */
+            /* Формула: берем высоту оболочки в пикселях и делим на реальную высоту контейнера в пикселях */
+            transform: scale(calc(98vh / 297mm));
+         }
+
+         @@media print {
+            body {
+               background-color: transparent;
+               overflow: visible;
+               display: block;
+               padding: 0;
+               margin: 0;
+            }
+
+            .screen-wrapper {
+               display: block;
+               height: auto;
+               width: auto;
+               padding: 0;
+               margin: 0;
+            }
+
+            .page-container {
+               transform: none;
+               box-shadow: none;
+               margin: 0;
+               page-break-inside: avoid;
+               break-inside: avoid;
+            }
+         }
+
+         /* 3. Безопасность для таблиц и строк */
+         table {
+            width: 100%;
+            border-collapse: collapse;
+         }
+
+         tr {
+            /* Запрещаем разрывать строки, если таблица окажется близко к нижнему краю */
+            page-break-inside: avoid;
+            break-inside: avoid;
+         }
+
+         /* 4. Прижимаем подвал (например, место для подписи) строго к низу ОДНОЙ страницы */
+         .footer-signatures {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+         }
+
+         td {
+            border: 0.3mm solid black;
+            /* Базовая тонкая линия */
+            padding: 2mm;
+            /* Отступы внутри ячеек */
+            text-align: center;
+            font-family: Arial, sans-serif;
+            font-size: 7pt;
+         }
+
+         .vertical-align-cell {
+            width: 4mm;
+            max-width: 4mm;
+
+            writing-mode: vertical-lr;
+            transform: rotate(180deg);
+            text-align: center;
+         }
+
+         /* Класс для ячеек, у которых правая граница должна быть толстой */
+         .border-right-thick {
+            border-right: 1mm solid black;
+            /* Жирная правая линия (1 мм) */
+         }
+   </style>
+</head>
+
+
+<body>
+   <div class="screen-wrapper">
+      <div class="page-container">
+         <div style="padding: 20px;">
+            <table class="order-template-header">
+               <tbody>
+                  <tr>
+                     <td rowspan="2" class="vertical-align-cell">Колонка на 2 строки</td>
+
+                     <td>Кол 1 (стр 1)</td>
+                     <td>Кол 2 (стр 1)</td>
+                     <td>Кол 3 (стр 1)</td>
+                     <td>Кол 4 (стр 1)</td>
+                     <td>Кол 5 (стр 1)</td>
+                     <td>Кол 6 (стр 1)</td>
+                  </tr>
+
+                  <tr>
+                     <td>Кол 1 (стр 2)</td>
+                     <td>Кол 2 (стр 2)</td>
+                     <td>Кол 3 (стр 2)</td>
+                     <td>Кол 4 (стр 2)</td>
+                     <td colspan="2">Кол 5 (стр 2)</td>
+                  </tr>
+               </tbody>
+            </table> <!-- order-template-header -->
+
+            <table class="order-template-client-info">
+               <tbody>
+                  <tr>
+                     <td rowspan="4" class="vertical-align-cell">Ячейка 1</td>
+
+                     <td colspan="4">Ячейка 2</td>
+
+                  </tr>
+                  <tr>
+                     <td>Ячейка 3</td>
+                     <td colspan="3">Ячейка 4</td>
+
+                  </tr>
+                  <tr>
+                     <td colspan="4">Ячейка 5</td>
+                  </tr>
+                  <tr>
+                     <td>Ячейка 6</td>
+                     <td>Ячейка 7</td>
+                     <td>Ячейка 8</td>
+                  </tr>
+               </tbody>
+            </table>
+
+         </div>
+      </div>
+   </body>
+
+</html>

@@ -1,0 +1,92 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - ERP</title>
+    <script type="importmap"></script>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/ERP.styles.css" asp-append-version="true" />
+
+    <style>
+    </style>
+</head>
+
+<body>
+    <header class="erp-header">
+        <nav class="header-nav">
+            @await Component.InvokeAsync("Clock")
+
+            <a asp-page="/MainPage" class="nav-btn-main-page">
+                <img src="~/icon/nav-btn-main-icon.png" alt="Main Icon" class="nav-btn-main-icon">
+            </a>
+
+            <a asp-page="/Orders" class="nav-btn-orders">
+                <img src="~/icon/nav-btn-orders-icon.png" alt="Orders Icon" class="nav-btn-orders-icon">
+            </a>
+
+            <a asp-page="/MaterialsStock" class="nav-btn-materials-stock">
+                <img src="~/icon/nav-materials-stock-icon.png" alt="Materials Stock Icon"
+                     class="nav-btn-materials-stock-icon">
+            </a>
+
+            <a asp-page="/ProductsStock" class="nav-btn-products-stock">
+                <img src="~/icon/nav-products-stock-icon.png" alt="Products Stock Icon"
+                     class="nav-btn-products-stock-icon">
+            </a>
+
+            <a asp-page="/Clients" class="nav-btn-clients">
+                <img src="~/icon/nav-btn-clients-icon.png" alt="Clients Icon" class="nav-btn-clients-icon">
+            </a>
+
+            <a asp-page="/Mail" class="nav-btn-mail">
+                <img src="~/icon/nav-btn-mail-icon.png" alt="Mail Icon" class="nav-btn-mail-icon">
+            </a>
+
+            <a asp-page="/Statistics" class="nav-btn-statistics">
+                <img src="~/icon/nav-btn-statistics-icon.png" alt="Statistics Icon" class="nav-btn-statistics-icon">
+            </a>
+
+            <a asp-page="/Finances" class="nav-btn-finances">
+                <img src="~/icon/nav-btn-finances-icon.png" alt="Finances Icon" class="nav-btn-finances-icon">
+            </a>
+
+            <a asp-page="/Profile" class="nav-btn-profile">
+                <img src="~/icon/nav-btn-profile-icon.png" alt="Profile Icon" class="nav-btn-profile-icon">
+            </a>
+        </nav>
+    </header>
+    <div class="container-fluid">
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+
+    @await RenderSectionAsync("Scripts", required: false)
+
+    <script src="https://static.elfsight.com/platform/platform.js" async></script>
+
+    <script>
+        function updateDateTime() {
+        const now = new Date();
+        document.getElementById('live-time').textContent = now.toLocaleTimeString('pl-PL', {
+        hour: '2-digit', minute: '2-digit', second: '2-digit'
+        });
+        document.getElementById('live-date').textContent = now.toLocaleDateString('pl-PL', {
+        day: 'numeric', month: 'short'
+        });
+        }
+        updateDateTime();
+        setInterval(updateDateTime, 1000);
+    </script>
+
+</body>
+
+
+</html>
