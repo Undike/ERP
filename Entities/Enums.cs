@@ -46,3 +46,16 @@ public enum PolyurethaneHardness
    Soft,
    Hard
 }
+
+public enum GuillotineCutType
+{
+   Formatki,
+   Uzytki
+}
+
+public enum WeedingComplexity
+{
+   Low,
+   Medium,
+   Hard
+}

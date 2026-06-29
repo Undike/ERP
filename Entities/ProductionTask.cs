@@ -42,3 +42,25 @@ public class PolyurethaneTask : ProductionTask
 {
    public PolyurethaneHardness PolyurethaneHardness { get; set; }
 }
+
+public class GuillotineTask : ProductionTask
+{
+   public GuillotineCutType GuillotineCutType { get; set; }
+}
+
+public class DieCuttingTask : ProductionTask
+{
+   public DieForm DieForm { get; set; } = null!;
+}
+
+public class WeedingTask : ProductionTask
+{
+   public WeedingComplexity WeedingComplexity { get; set; }
+}
+
+public class PackingTask : ProductionTask
+{
+   public CartonBox? CartonBox { get; set; }
+   public int QuantityPerPackage { get; set; }
+   public int TotalPackagesCount { get; set; }
+}
