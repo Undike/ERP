@@ -1,11 +1,10 @@
 ﻿namespace ERP.Entities;
 
-public enum OrderStatus //! переделать под класс
+public enum OrderStatus 
 {
-   Pending,
-   Processing,
-   Shipped,
-   Delivered,
+   Draft,
+   InProduction,
+   Completed,
    Cancelled
 }
 
@@ -31,7 +30,6 @@ public enum PlotterOperationType
    Formating = 2,
    FieldAlignment = 4
 }
-
 
 public enum LaminationOperationType
 {
