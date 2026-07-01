@@ -10,7 +10,7 @@ public class Material
 public class PrintMedia : Material
 {
    public string Type { get; set; } = "";
-   public int WitdthMm { get; set; }
+   public int WidthMm { get; set; }
    public int DensityGsm { get; set; }
    public double LengthMeters { get; set; }
    public string Color { get; set; } = "";
