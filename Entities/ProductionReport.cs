@@ -105,3 +105,23 @@ public class PolyurethaneReport : ProductionReport
 
    public double ActualPolyurethaneUsedKg { get; set; }
 }
+
+public class GuillotineReport : ProductionReport
+{
+
+}
+
+public class DieCuttingReport : ProductionReport
+{
+   public int SetupMinutesSpent { get; set; }
+}
+
+public class WeedingReport : ProductionReport
+{
+
+}
+
+public class PackingReport : ProductionReport
+{
+
+}
